@@ -1,10 +1,17 @@
+from dataclasses import dataclass
+
 from webml.extensions import db
 
 
+@dataclass
 class Transaction(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    distance_from_home = db.Column(db.Float)
-    distance_from_last_transaction = db.Column(db.Float)
-    ratio_to_median_purchase_price = db.Column(db.Float)
-    repeat_retailer = db.Column(db.Integer)
-    fraud = db.Column(db.Integer)
+    __tablename__ = 'transactions'
+    id: int = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    distance_from_home: float = db.Column(db.Float, nullable=False)
+    distance_from_last_transaction: float = db.Column(db.Float, nullable=False)
+    ratio_to_median_purchase_price: float = db.Column(db.Float, nullable=False)
+    repeat_retailer: int = db.Column(db.Integer, nullable=False)
+    fraud: int = db.Column(db.Integer, nullable=False)
+
+    def __str__(self) -> str:
+        return f"Record {self.id}"
