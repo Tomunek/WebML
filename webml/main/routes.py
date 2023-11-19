@@ -1,12 +1,12 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 
+from webml.extensions import db
 from webml.main import bp
 from webml.model.transaction import Transaction
 
 
 @bp.route('/', methods=['GET'])
 def index():
-    # TODO: get and display all data points
     transactions = Transaction.query.all()
     return render_template('index.html', transactions=transactions)
 
@@ -24,8 +24,13 @@ def add_post():
 
 @bp.route('/delete/<int:record_id>', methods=['POST'])
 def delete_post(record_id):
-    # TODO: delete data point
-    return f"Deleting record {record_id} is not implemented yet!"
+    transaction_to_delete = Transaction.query.get(record_id)
+    if transaction_to_delete is None:
+        return f"Transaction with id {record_id} does not exist, so it can not be deleted!", 404
+    else:
+        Transaction.query.filter(Transaction.id == record_id).delete()
+        db.session.commit()
+        return redirect(url_for('main.index'), code=302)
 
 
 @bp.route('/predict', methods=['GET'])

@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
-    <!-- PyCharm can not locate style.css -->
-    <!--suppress HtmlUnknownTarget -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
 </head>
 <body>
-<nav>
-    <!-- TODO: make this look good -->
-    <a href="{{ url_for('main.index') }}">View data</a>
-    <a href="{{ url_for('main.add_get') }}">Add data point</a>
-</nav>
-<div class="content">
-    {% block content %} {% endblock %}
+<div class="site">
+    <div class="nav">
+        <a href="{{ url_for('main.index') }}">🏠 View data</a>
+        <a href="{{ url_for('main.add_get') }}">⬆️ Add data point</a>
+    </div>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
 </div>
 </body>
 </html>

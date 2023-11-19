@@ -25,8 +25,8 @@
             <td>{{ transaction.repeat_retailer }}</td>
             <td>{{ transaction.fraud }}</td>
             <td>
-                <!--suppress HtmlUnknownTarget -->
-                <form method="post" action="{{ url_for('main.delete_post', record_id=transaction.id) }}">
+                <form class="delete-form" method="post"
+                      action="{{ url_for('main.delete_post', record_id=transaction.id) }}">
                     <input type="submit" value="DELETE"/>
                 </form>
         </tr>
