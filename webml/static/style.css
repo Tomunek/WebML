@@ -41,3 +41,28 @@ body {
 .delete-form input {
     background-color: red;
 }
+
+.transaction-add {
+    border-collapse: collapse;
+    border: solid black 4px;
+}
+
+.transaction-add thead {
+    border: solid black 3px;
+    background-color: #AAAAAA;
+}
+
+.transaction-add td, th {
+    border: solid black 3px;
+    padding: 2px;
+}
+
+.transaction-add-reset {
+    width: 95%;
+    background-color: red;
+}
+
+.transaction-add-submit {
+    width: 95%;
+    background-color: green;
+}

@@ -2,7 +2,80 @@
 {% block title %} Add data {% endblock %}
 {% block content %}
 <div class="content">
-    <h2>Add data (TODO)</h2>
-    <!-- TODO: add form for submitting data -->
+    <h2>Add data point:</h2>
+    <form method="POST" action="{{ url_for('main.add_post') }}">
+        <table class="transaction-add">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Distance from home
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="distance_from_home" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Distance from last transaction
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="distance_from_last_transaction" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ratio to median purchase price
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="ratio_to_median_purchase_price" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Repeat retailer
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" name="repeat_retailer"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fraud
+                </td>
+                <td>
+                    <label>
+                        <input type="checkbox" name="fraud"/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="transaction-add-reset" type="reset" value="Reset">
+                </td>
+                <td>
+                    <input class="transaction-add-submit" type="submit" value="Add"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 {% endblock %}
