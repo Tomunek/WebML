@@ -2,3 +2,26 @@ body {
     font-family: sans-serif;
     text-align: center;
 }
+
+.transaction-list {
+    border-collapse: collapse;
+    border: solid black 4px;
+}
+
+.transaction-list thead {
+    border: solid black 3px;
+    background-color: #AAAAAA;
+}
+
+.transaction-list tbody tr {
+    background-color: #FFFFFF;
+}
+
+.transaction-list tbody tr:hover {
+    background-color: #DDDDDD;
+}
+
+.transaction-list td, th {
+    border: solid black 2px;
+    padding: 3px;
+}

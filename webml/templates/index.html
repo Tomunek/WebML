@@ -2,7 +2,36 @@
 {% block title %} WebML {% endblock %}
 {% block content %}
 <div class="content">
-    <h2>This is the main site</h2>
-    <!-- TODO: display all data points with 'delete' buttons -->
+    <h2>Loaded data points:</h2>
+    <table class="transaction-list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Distance from home</th>
+            <th>Distance from last transaction</th>
+            <th>Ratio to median purchase price</th>
+            <th>Repeat retailer</th>
+            <th>Fraud</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.distance_from_home }}</td>
+            <td>{{ transaction.distance_from_last_transaction }}</td>
+            <td>{{ transaction.ratio_to_median_purchase_price }}</td>
+            <td>{{ transaction.repeat_retailer }}</td>
+            <td>{{ transaction.fraud }}</td>
+            <td>
+                <!--suppress HtmlUnknownTarget -->
+                <form method="post" action="{{ url_for('main.delete_post', record_id=transaction.id) }}">
+                    <input type="submit" value="DELETE"/>
+                </form>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

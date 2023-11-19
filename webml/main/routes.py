@@ -1,37 +1,39 @@
 from flask import render_template
 
 from webml.main import bp
+from webml.model.transaction import Transaction
 
 
-@bp.route('/')
+@bp.route('/', methods=['GET'])
 def index():
     # TODO: get and display all data points
-    return render_template('index.html')
+    transactions = Transaction.query.all()
+    return render_template('index.html', transactions=transactions)
 
 
-@bp.get('/add')
+@bp.route('/add', methods=['GET'])
 def add_get():
     return render_template('add.html')
 
 
-@bp.post('/add')
+@bp.route('/add', methods=['POST'])
 def add_post():
     # TODO: add data point
     return "Adding data point not implemented yet!"
 
 
-@bp.post('/delete/<int:record_id>')
+@bp.route('/delete/<int:record_id>', methods=['POST'])
 def delete_post(record_id):
     # TODO: delete data point
     return f"Deleting record {record_id} is not implemented yet!"
 
 
-@bp.get('/predict')
+@bp.route('/predict', methods=['GET'])
 def predict_get():
     return render_template('predict.html')
 
 
-@bp.post('/predict')
+@bp.route('/predict', methods=['POST'])
 def predict_post():
     # TODO: predict
     return render_template('predict_result.html')
