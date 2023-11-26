@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 from webml.extensions import db
 from webml.model.transaction import Transaction
 
@@ -25,6 +25,10 @@ def constrain_checkbox_value(string: str) -> int:
     if string == 'on':
         return 1
     return 0
+
+
+def get_all_records() -> List[Transaction]:
+    return Transaction.query.all()
 
 
 def validate_and_add_record(record_data: Dict[str, str]) -> int | None:
@@ -73,3 +77,21 @@ def validate_and_delete_record(record_id: int) -> int | None:
     Transaction.query.filter(Transaction.id == record_id).delete()
     db.session.commit()
     return record_id
+
+
+def validate_and_predict_record(record_data: Dict[str, str]) -> int | None:
+    distance_from_home = str(record_data.get('distance_from_home', None))
+    distance_from_last_transaction = str(record_data.get('distance_from_last_transaction', None))
+    ratio_to_median_purchase_price = str(record_data.get('ratio_to_median_purchase_price', None))
+    repeat_retailer = str(record_data.get('repeat_retailer', None))
+
+    if validate_non_negative_float(distance_from_home) and \
+            validate_non_negative_float(distance_from_last_transaction) and \
+            validate_non_negative_float(ratio_to_median_purchase_price):
+        repeat_retailer_constrained = constrain_checkbox_value(repeat_retailer)
+        distance_from_home_f = float(distance_from_home)
+        distance_from_last_transaction_f = float(distance_from_last_transaction)
+        ratio_to_median_purchase_price_f = float(ratio_to_median_purchase_price)
+        repeat_retailer_constrained = constrain_checkbox_value(repeat_retailer)
+
+    return None

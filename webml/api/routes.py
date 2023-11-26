@@ -3,14 +3,13 @@ import json
 
 from flask import request
 
-from webml import Transaction
 from webml.api import bp
-from webml.util.utils import validate_and_add_record, validate_and_delete_record
+from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record
 
 
 @bp.route('/data', methods=['GET'])
 def api_data_get():
-    transactions = Transaction.query.all()
+    transactions = get_all_records()
     return f"{json.dumps([dataclasses.asdict(transaction) for transaction in transactions])}"
 
 

@@ -15,3 +15,13 @@ class Transaction(db.Model):
 
     def __str__(self) -> str:
         return f"Record {self.id}"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "distance_from_home": self.distance_from_home,
+            "distance_from_last_transaction": self.distance_from_last_transaction,
+            "ratio_to_median_purchase_price": self.ratio_to_median_purchase_price,
+            "repeat_retailer": self.repeat_retailer,
+            "fraud": self.fraud
+        }

@@ -1,13 +1,12 @@
 from flask import render_template, redirect, url_for, request
 
 from webml.main import bp
-from webml.model.transaction import Transaction
-from webml.util.utils import validate_and_add_record, validate_and_delete_record
+from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record
 
 
 @bp.route('/', methods=['GET'])
 def index():
-    transactions = Transaction.query.all()
+    transactions = get_all_records()
     return render_template('index.html', transactions=transactions)
 
 
