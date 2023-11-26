@@ -42,27 +42,27 @@ body {
     background-color: red;
 }
 
-.transaction-add {
+.transaction-form {
     border-collapse: collapse;
     border: solid black 4px;
 }
 
-.transaction-add thead {
+.transaction-form thead {
     border: solid black 3px;
     background-color: #AAAAAA;
 }
 
-.transaction-add td, th {
+.transaction-form td, th {
     border: solid black 3px;
     padding: 2px;
 }
 
-.transaction-add-reset {
+.button-reset {
     width: 95%;
     background-color: red;
 }
 
-.transaction-add-submit {
+.button-submit {
     width: 95%;
     background-color: green;
 }

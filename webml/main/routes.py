@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for, request
 
 from webml.main import bp
-from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record
+from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record, \
+    validate_and_predict_record
 
 
 @bp.route('/', methods=['GET'])
@@ -41,5 +42,7 @@ def predict_get():
 
 @bp.route('/predict', methods=['POST'])
 def predict_post():
-    # TODO: predict
-    return render_template('predict_result.html')
+    result = validate_and_predict_record(request.form)
+    if result is None:
+        return "Invalid data or empty database!", 400
+    return render_template('predict_result.html', result=result)

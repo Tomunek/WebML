@@ -2,7 +2,20 @@
 {% block title %} Prediction result {% endblock %}
 {% block content %}
 <div class="content">
-    <h2>Predict (TODO)</h2>
-    <!-- TODO: display prediction result -->
+    <h2>Result:</h2>
+    {{ result }}
+    {% if result == 0 %}
+    <h3>Transaction is legit</h3><br/>
+    <img src="https://i.pinimg.com/474x/89/68/5a/89685abc1dfd0bff4b8a1119b91e2237.jpg"
+         width="400px"
+         height="600px"
+         alt="Stock photo of a man in suit"/>
+    {% else %}
+    <h3>Transaction is NOT legit</h3><br/>
+    <img src="https://media.istockphoto.com/id/183279907/photo/happy-young-man-gives-thumbs-up.jpg?s=612x612&w=0&k=20&c=gryk-BqPIms6eZFMApuOZRMfwIvWssdPujTgz3ryq9I="
+         width="600px"
+         height="500px"
+         alt="Stock photo of a man giving thumbs up"/>
+    {% endif %}
 </div>
 {% endblock %}

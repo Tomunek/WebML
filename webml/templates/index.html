@@ -10,7 +10,6 @@
             <th>Distance from home</th>
             <th>Distance from last transaction</th>
             <th>Ratio to median purchase price</th>
-            <th>Repeat retailer</th>
             <th>Fraud</th>
             <th>Delete</th>
         </tr>
@@ -22,7 +21,6 @@
             <td>{{ transaction.distance_from_home }}</td>
             <td>{{ transaction.distance_from_last_transaction }}</td>
             <td>{{ transaction.ratio_to_median_purchase_price }}</td>
-            <td>{{ transaction.repeat_retailer }}</td>
             <td>{{ transaction.fraud }}</td>
             <td>
                 <form class="delete-form" method="post"

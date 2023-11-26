@@ -4,7 +4,7 @@
 <div class="content">
     <h2>Add data point:</h2>
     <form method="POST" action="{{ url_for('main.add_post') }}">
-        <table class="transaction-add">
+        <table class="transaction-form transaction-add">
             <thead>
             <tr>
                 <th>
@@ -48,16 +48,6 @@
             </tr>
             <tr>
                 <td>
-                    Repeat retailer
-                </td>
-                <td>
-                    <label>
-                        <input type="checkbox" name="repeat_retailer"/>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     Fraud
                 </td>
                 <td>
@@ -68,10 +58,10 @@
             </tr>
             <tr>
                 <td>
-                    <input class="transaction-add-reset" type="reset" value="Reset">
+                    <input class="button-reset transaction-add-reset" type="reset" value="Reset">
                 </td>
                 <td>
-                    <input class="transaction-add-submit" type="submit" value="Add"/>
+                    <input class="button-add transaction-add-submit" type="submit" value="Add"/>
                 </td>
             </tr>
             </tbody>

@@ -4,7 +4,8 @@ import json
 from flask import request
 
 from webml.api import bp
-from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record
+from webml.repository.repository import get_all_records, validate_and_add_record, validate_and_delete_record, \
+    validate_and_predict_record
 
 
 @bp.route('/data', methods=['GET'])
@@ -35,5 +36,7 @@ def api_data_delete(record_id):
 
 @bp.route('/predictions', methods=['GET'])
 def api_predictions_get():
-    # TODO: predict
-    return f"TODO: predictions"
+    result = validate_and_predict_record(request.args.to_dict())
+    if result is None:
+        return json.dumps({'error': 'Invalid data or empty database'}), 400
+    return json.dumps({'fraud': result}), 200

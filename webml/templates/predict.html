@@ -3,6 +3,59 @@
 {% block content %}
 <div class="content">
     <h2>Predict (TODO):</h2>
-    <!-- TODO: display prediction from -->
+    <form method="POST" action="{{ url_for('main.predict_post') }}">
+        <table class="transaction-form transaction-predict">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Distance from home
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="distance_from_home" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Distance from last transaction
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="distance_from_last_transaction" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ratio to median purchase price
+                </td>
+                <td>
+                    <label>
+                        <input type="number" step=any name="ratio_to_median_purchase_price" required/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="button-reset transaction-predict-reset" type="reset" value="Reset">
+                </td>
+                <td>
+                    <input class="button-add transaction-predict-submit" type="submit" value="Predict"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 {% endblock %}
