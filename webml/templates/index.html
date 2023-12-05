@@ -17,7 +17,7 @@
         <tbody>
         {% for transaction in transactions %}
         <tr>
-            <td>{{ transaction.id }}</td>
+            <td>{{ loop.index }}</td>
             <td>{{ transaction.distance_from_home }}</td>
             <td>{{ transaction.distance_from_last_transaction }}</td>
             <td>{{ transaction.ratio_to_median_purchase_price }}</td>
