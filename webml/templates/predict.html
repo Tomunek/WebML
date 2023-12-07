@@ -2,7 +2,7 @@
 {% block title %} Predict {% endblock %}
 {% block content %}
 <div class="content">
-    <h2>Predict (TODO):</h2>
+    <h2>Predict:</h2>
     <form method="POST" action="{{ url_for('main.predict_post') }}">
         <table class="transaction-form transaction-predict">
             <thead>
@@ -51,7 +51,7 @@
                     <input class="button-reset transaction-predict-reset" type="reset" value="Reset">
                 </td>
                 <td>
-                    <input class="button-add transaction-predict-submit" type="submit" value="Predict"/>
+                    <input class="button-submit transaction-predict-submit" type="submit" value="Predict"/>
                 </td>
             </tr>
             </tbody>

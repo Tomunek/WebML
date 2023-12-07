@@ -5,7 +5,7 @@ from webml.exceptions.exceptions import *
 from webml.extensions import db
 from webml.model.transaction import Transaction
 
-IMPORTANT_THINKY_THINGY = MLModel()
+machine_learning_model = MLModel()
 
 
 def is_float(string: str) -> bool:
@@ -33,13 +33,13 @@ def constrain_checkbox_value(string: str) -> int:
 
 
 def retrain_model() -> None:
-    global IMPORTANT_THINKY_THINGY
+    global machine_learning_model
     transactions = get_all_records()
-    IMPORTANT_THINKY_THINGY.train(transactions)
+    machine_learning_model.train(transactions)
 
 
 def get_all_records() -> List[Transaction]:
-    return Transaction.query.all()
+    return db.session.query(Transaction).all()
 
 
 def validate_and_add_record(record_data: Dict[str, str]) -> int:
@@ -67,9 +67,7 @@ def validate_and_add_record(record_data: Dict[str, str]) -> int:
                               distance_from_last_transaction=distance_from_last_transaction_f,
                               ratio_to_median_purchase_price=ratio_to_median_purchase_price_f,
                               fraud=fraud_constrained)
-    db.session.begin()
     db.session.add(transaction)
-    db.session.flush()
     db.session.commit()
     db.session.refresh(transaction)
     retrain_model()
@@ -88,9 +86,9 @@ def validate_and_delete_record(record_id: int) -> int:
 
 
 def validate_and_predict_record(record_data: Dict[str, str]) -> int:
-    if not IMPORTANT_THINKY_THINGY.initialised:
+    if not machine_learning_model.initialised:
         retrain_model()
-    if not IMPORTANT_THINKY_THINGY.initialised:
+    if not machine_learning_model.initialised:
         raise NoRecordsInDBError()
 
     distance_from_home = str(record_data.get('distance_from_home', None))
@@ -111,4 +109,4 @@ def validate_and_predict_record(record_data: Dict[str, str]) -> int:
                               ratio_to_median_purchase_price=ratio_to_median_purchase_price_f,
                               fraud=1)
     # Here all the magic happens
-    return IMPORTANT_THINKY_THINGY.classify(transaction)
+    return machine_learning_model.classify(transaction)

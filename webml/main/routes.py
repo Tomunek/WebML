@@ -23,7 +23,8 @@ def add_post():
     try:
         validate_and_add_record(request.form)
     except InvalidValueError:
-        return "Invalid data!", 400
+        return render_template('error.html', code=400,
+                               text="Invalid data!"), 400
     return redirect(url_for('main.index'), code=302)
 
 
@@ -32,7 +33,8 @@ def delete_post(record_id):
     try:
         validate_and_delete_record(record_id)
     except NoRecordWithThisIDError:
-        return f"Transaction with id {record_id} does not exist, so it can not be deleted!", 404
+        return render_template('error.html', code=404,
+                               text=f"Transaction with id {record_id} does not exist, so it can not be deleted!"), 404
     return redirect(url_for('main.index'), code=302)
 
 
@@ -47,6 +49,8 @@ def predict_post():
         result = validate_and_predict_record(request.form)
         return render_template('predict_result.html', result=result)
     except InvalidValueError:
-        return "Invalid data!", 400
+        return render_template('error.html', code=400,
+                               text="Invalid data!"), 400
     except NoRecordsInDBError:
-        return "Empty database!", 400
+        return render_template('error.html', code=400,
+                               text="Not enough points in database to predict a result!"), 400
