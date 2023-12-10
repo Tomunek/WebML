@@ -11,7 +11,7 @@ from webml.exceptions.exceptions import *
 @bp.route('/data', methods=['GET'])
 def api_data_get():
     transactions = get_all_records()
-    return [dataclasses.asdict(transaction) for transaction in transactions]
+    return [dataclasses.asdict(transaction) for transaction in transactions], 200
 
 
 @bp.route('/data', methods=['POST'])
