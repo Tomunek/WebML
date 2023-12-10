@@ -43,8 +43,6 @@ def get_all_records() -> List[Transaction]:
 
 
 def validate_and_add_record(record_data: Dict[str, str]) -> int:
-    # TODO: make this function better (in reality, it accepts Dict[str, Any]) and
-    #  should validate and cast each value in a better way
     # Get values from all fields
     distance_from_home = str(record_data.get('distance_from_home', None))
     distance_from_last_transaction = str(record_data.get('distance_from_last_transaction', None))
@@ -69,7 +67,6 @@ def validate_and_add_record(record_data: Dict[str, str]) -> int:
                               fraud=fraud_constrained)
     db.session.add(transaction)
     db.session.commit()
-    db.session.refresh(transaction)
     retrain_model()
     return transaction.id
 
